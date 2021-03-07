@@ -1,10 +1,12 @@
 <template>
-  <el-menu
+<el-menu
       default-active="2"
       class="el-menu-vertical-demo"
       background-color="#012032"
       text-color="#fff"
-      active-text-color="#ffd04b">
+      active-text-color="#ffd04b"
+      :collapse = "isCollapse"
+      >
       <el-menu-item index="2">
         <i class="el-icon-menu"></i>
         <span slot="title">导航二</span>
@@ -39,9 +41,9 @@
 <script>
 
 export default {
-  name: 'aside',
+  name: 'appAside',
   components: {},
-  props: {},
+  props: ['isCollapse'],
   data () {
     return {
 
@@ -62,4 +64,9 @@ export default {
 
 </script>
 <style scoped lang="less">
+ .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height:400px;
+  }
+
 </style>
