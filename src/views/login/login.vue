@@ -13,10 +13,11 @@
     <el-input v-model="user.code" placeholder="请输入验证码" prop="code"></el-input>
   </el-form-item>
   <el-form-item prop="agree">
-          <el-checkbox v-model="user.agree">我已阅读并同意用户协议和隐私条款</el-checkbox>
+          <el-checkbox v-model="user.agree"></el-checkbox>
+          <el-button type="text" @click="open">用户隐私协议</el-button>
         </el-form-item>
   <el-form-item>
-    <el-button class="login-btn" type="primary" @click="onSubmit" :loading="loginLoading">立即创建</el-button>
+    <el-button class="login-btn" type="primary" @click="onSubmit" :loading="loginLoading">登录</el-button>
   </el-form-item>
 </el-form>
       </div>
@@ -79,14 +80,18 @@ export default {
   mounted () {},
 
   methods: {
+    open () {
+      this.$router.push('/xieyi')
+    },
     onSubmit () {
-      this.$refs.user.validate((valid) => {
-        if (valid) {
-          this.login()
-        } else {
-          console.log('error submit!!')
-          return false
+      this.$refs.user.validate(valid => {
+      // 如果表单验证失败，停止请求提交
+        if (!valid) {
+          return
         }
+
+        // 验证通过，请求登录
+        this.login()
       })
     },
     login () {
@@ -143,6 +148,9 @@ export default {
         width: 100%;
       }
     }
+  }
+  .tiaokuan {
+    padding-left: 5px;
   }
 }
 </style>

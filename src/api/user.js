@@ -9,3 +9,10 @@ export const login = data => {
   // })
   return request.post('/mp/v1_0/authorizations', data)
 }
+// 获取用户资料
+export const getUserData = () => {
+  return request({
+    method: 'GET',
+    url: '/mp/v1_0/user/profile'
+  })
+}

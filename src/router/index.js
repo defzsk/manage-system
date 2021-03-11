@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/views/login/login'
 import Layout from '@/views/layout/layout'
+import Home from '@/views/home/home'
 Vue.use(VueRouter)
 
 const routes = [
@@ -12,8 +13,50 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Layout',
-    component: Layout
+    component: Layout,
+    children: [
+      {
+        path: '',
+        name: 'home',
+        component: Home
+      },
+      {
+        path: '/article',
+        name: 'app-article',
+        component: () => import('@/views/article/app-article')
+      },
+      {
+        path: 'image',
+        name: 'image',
+        component: () => import('@/views/image/image')
+      },
+      {
+        path: '/comment',
+        name: 'comment',
+        component: () => import('@/views/comment/comment')
+      },
+      {
+        path: '/fans',
+        name: 'fans',
+        component: () => import('@/views/fans/fans')
+      },
+      {
+        path: '/publish',
+        name: 'publish',
+        component: () => import('@/views/publish/publish')
+      },
+      {
+        path: '/setting',
+        name: '/setting',
+        component: () => import('@/views//setting//setting')
+      }
+
+    ]
+  },
+  {
+    path: '/xieyi',
+    name: 'xieyi',
+    component: () => import('@/views/xieyi/xieyi')
   }
 
   // {
