@@ -37,7 +37,7 @@ export default {
         {
           index: '/image',
           icon: 'el-icon-notebook-1',
-          title: '首素材管理'
+          title: '素材管理'
         },
         {
           index: '/publish',

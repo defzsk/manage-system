@@ -27,8 +27,8 @@ const routes = [
       },
       {
         path: 'image',
-        name: 'image',
-        component: () => import('@/views/image/image')
+        name: 'appImage',
+        component: () => import('@/views/appImage/appImage')
       },
       {
         path: '/comment',
@@ -48,7 +48,12 @@ const routes = [
       {
         path: '/setting',
         name: '/setting',
-        component: () => import('@/views//setting//setting')
+        component: () => import('@/views/setting/setting')
+      },
+      {
+        path: '/editArticle',
+        name: '/editArticle',
+        component: () => import('@/views/editArticle/editArticle')
       }
 
     ]

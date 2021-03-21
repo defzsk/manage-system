@@ -94,25 +94,40 @@ export default {
         this.login()
       })
     },
-    login () {
+    async login () {
       this.loginLoading = true
-      login(this.user).then(res => {
-        // console.log(res.data.data)
+      const res = await login(this.user)
+      console.log(res)
+      console.log(res.data.message)
+      if (res.statusText === 'CREATED') {
         this.$message({
-          showClose: true,
           message: '登录成功',
           type: 'success'
         })
-        this.loginLoading = false
+        this.loading = false
         window.localStorage.setItem('user', JSON.stringify(res.data.data))
         this.$router.push('/')
-      }).catch(err => { // 登录失败
-        console.log('登录失败', err)
-        this.$message.error('登录失败，手机号或验证码错误')
+      } else {
+        this.$message.error('登录失败,手机号或者验证码错误')
+        this.loading = false
+      }
+      // login(this.user).then(res => {
+      //   // console.log(res.data.data)
+      //   this.$message({
+      //     showClose: true,
+      //     message: '登录成功',
+      //     type: 'success'
+      //   })
+      //   this.loginLoading = false
+      //   window.localStorage.setItem('user', JSON.stringify(res.data.data))
+      //   this.$router.push('/')
+      // }).catch(err => { // 登录失败
+      //   console.log('登录失败', err)
+      //   this.$message.error('登录失败，手机号或验证码错误')
 
-        // 关闭 loading
-        this.loginLoading = false
-      })
+      //   // 关闭 loading
+      //   this.loginLoading = false
+      // })
     }
   },
 

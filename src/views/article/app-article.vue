@@ -10,7 +10,7 @@
 <!-- 面包屑路径导航 -->
  </div>
  <!-- 数据删选表单 -->
- <el-form ref="form" :model="form" label-width="80px">
+ <el-form ref="form"  label-width="80px">
    <el-form-item label="特殊资源">
     <el-radio-group v-model="status">
       <el-radio :label="null">全部</el-radio>
@@ -58,7 +58,7 @@
          <el-image
       style="width: 50px; height: 50px"
       :src="scope.row.cover.images[0]"
-      :fit="fit"></el-image>
+      fit="fit"></el-image>
        <!-- <img class='image' :src="scope.row.cover.images[0]"/> -->
       </template>
     </el-table-column>
@@ -90,7 +90,7 @@
       <template slot-scope="scope">
         <el-button
           size="mini"
-          @click="$router.push('/publish')">编辑</el-button>
+          @click="$router.push('/editArticle?id=' + scope.row.id)">编辑</el-button>
         <el-button
           size="mini"
           type="danger"
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-import { getArticles, deleteArticles, getArticleChannels } from '@/api/article'
+import { getArticleList, deleteArticles, getArticleChannels } from '@/api/article'
 export default {
   name: 'app-article',
   components: {},
@@ -142,12 +142,12 @@ export default {
   methods: {
     loadArticleChannels () {
       getArticleChannels().then(res => {
-        console.log(res)
+        // console.log(res)
         this.channels = res.data.data.channels
       })
     },
     loadGetArticles (page) {
-      getArticles({
+      getArticleList({
         page,
         per_page: 10,
         status: this.status,
@@ -165,7 +165,7 @@ export default {
     },
     handleDelete (articleId) {
       // console.log(articleId)
-      deleteArticles(articleId).then(res => {
+      deleteArticles(articleId.toString()).then(res => {
         // console.log(res)
         this.loadGetArticles(this.page)
       })
