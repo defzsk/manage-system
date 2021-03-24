@@ -155,6 +155,7 @@ export default {
         begin_pubdate: this.date ? this.date[0] : null,
         end_pubdate: this.date ? this.date[1] : null
       }).then(res => {
+        // console.log(res)
         this.articles = res.data.data.results
         this.total = res.data.data.total_count
         // console.log(status)
