@@ -32,6 +32,7 @@
 <script>
 import appAside from './components/appAside'
 import { getUserData } from '@/api/user'
+import globalBus from '@/utils/globalBus'
 export default {
   name: 'layout',
   components: {
@@ -49,6 +50,12 @@ export default {
 
   created () {
     this.loadUserData()
+    globalBus.$on('update', (data) => {
+      // this.user.name = data.name
+      console.log(data.photo)
+      this.user.photo = data.photo
+      this.loadUserData()
+    })
   },
 
   mounted () {},
